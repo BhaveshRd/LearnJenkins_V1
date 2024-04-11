@@ -15,6 +15,9 @@ class LearnJenkinsV1ApplicationTests {
 	void contextLoads() {
 
 		loggerFactory.info("test my first test case-------->");
+
+
+		loggerFactory.info("test my first test case 2-------->");
 		assertEquals(true, true);
 	}
 
