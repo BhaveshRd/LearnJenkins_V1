@@ -23,7 +23,7 @@ pipeline {
          stage('SonarQube Analysis') {
             steps {
                 script {
-                    def scannerHome = tool 'SonarQube Scanner'
+                    def scannerHome = tool 'Sonar_Default'
                     withSonarQubeEnv('SonarQubeServer') {
 					 withCredentials([string(credentialsId: 'sonarqube-token', variable: 'Sonar_Token')]) {
                         sh "${scannerHome}/bin/sonar-scanner"
