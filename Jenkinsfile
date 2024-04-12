@@ -14,7 +14,7 @@ pipeline {
             }
         }
 
-         stage('Test') {
+         stage('Package') {
                     steps {
                         // Run unit tests
                         sh 'mvn package'
