@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+     tools {
+        // Specify the Maven installation to use
+        maven 'Maven_Default'
+    }
     
     stages {
         stage('clean') {
