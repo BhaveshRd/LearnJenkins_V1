@@ -29,8 +29,8 @@ environment {
                     def scannerHome = tool 'Sonar_Scanner_Default'
                     withSonarQubeEnv('Sonar_Server_Default') {
 					 withCredentials([string(credentialsId: 'Sonar_Token', variable: 'SONAR_TOKEN')]) {
-                        sh "${scannerHome}/bin/sonar-scanner"\
-			-Dsonar.login=${env.SONAR_TOKEN}"
+                        sh "${scannerHome}/bin/sonar-scanner" \
+				-Dsonar.login=${env.SONAR_TOKEN}"
 						}
                     }
                 }
