@@ -20,12 +20,6 @@ pipeline {
                         sh 'mvn package'
                     }
          }
-
-        stage('SonarQube Analysis') {
-            steps {
-                    sh 'mvn sonar:sonar'
-            }
-        }
     }
     post {
        success {
