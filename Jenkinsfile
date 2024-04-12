@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+environment {
+        SONAR_TOKEN = credentials('Sonar_Token')
+    }
      tools {
         // Specify the Maven installation to use
         maven 'Maven_Default'
@@ -25,8 +28,9 @@ pipeline {
                 script {
                     def scannerHome = tool 'Sonar_Scanner_Default'
                     withSonarQubeEnv('Sonar_Server_Default') {
-					 withCredentials([string(credentialsId: 'Sonar_Token', variable: 'Sonar_Token')]) {
-                        sh "${scannerHome}/bin/sonar-scanner"
+					 withCredentials([string(credentialsId: 'Sonar_Token', variable: 'SONAR_TOKEN')]) {
+                        sh "${scannerHome}/bin/sonar-scanner"\
+			-Dsonar.login=${env.SONAR_TOKEN}"
 						}
                     }
                 }
