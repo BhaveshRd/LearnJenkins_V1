@@ -20,6 +20,19 @@ pipeline {
             }
         }
 
+         stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'SonarQube Scanner'
+                    withSonarQubeEnv('SonarQubeServer') {
+					 withCredentials([string(credentialsId: 'sonarqube-token', variable: 'Sonar_Token')]) {
+                        sh "${scannerHome}/bin/sonar-scanner"
+						}
+                    }
+                }
+            }
+        }
+
          stage('Package') {
                     steps {
                         // Run unit tests
