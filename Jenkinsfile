@@ -35,7 +35,9 @@ stage('Sonarqube') {
             -Dsonar.projectKey=LearnJenkins_V1 \
             -Dsonar.java.binaries=target/classes \
             -Dsonar.sources=src \
-             -Dsonar.login=\${User_Sonar_Token}"
+             -Dsonar.login=\${User_Sonar_Token} \
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
+                       
              }
         }
     }
