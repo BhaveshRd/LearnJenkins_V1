@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        SONAR_TOKEN = credentials('Sonar_Token_Updated')
+    }
+
      tools {
         // Specify the Maven installation to use
         maven 'Maven_Default'
@@ -30,7 +34,7 @@ stage('Sonarqube') {
             bat "${scannerHome}/bin/sonar-scanner \
             -Dsonar.projectKey=LearnJenkins_V1 \
             -Dsonar.sources=src \
-             -Dsonar.java.binaries=target/classes"
+             -Dsonar.login=${env.SONAR_TOKEN}"
         }
     }
 }
