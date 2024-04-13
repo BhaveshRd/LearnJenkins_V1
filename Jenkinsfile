@@ -34,8 +34,7 @@ stage('Sonarqube') {
             bat "${scannerHome}/bin/sonar-scanner \
             -Dsonar.projectKey=LearnJenkins_V1 \
             -Dsonar.java.binaries=target/classes \
-            -Dsonar.sources=src \
-             -Dsonar.login=${env.SONAR_TOKEN}"
+            -Dsonar.sources=src"
              }
         }
     }
