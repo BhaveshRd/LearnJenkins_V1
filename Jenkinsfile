@@ -30,7 +30,9 @@ stage('Sonarqube') {
     }
     steps {
         withSonarQubeEnv('Sonar_Server_Default') {
-            bat "${scannerHome}/bin/sonar-scanner"
+            bat "${scannerHome}/bin/sonar-scanner \
+            -Dsonar.projectKey=LearnJenkins_V1 \
+            -Dsonar.sources=src"
         }
         timeout(time: 10, unit: 'MINUTES') {
             waitForQualityGate abortPipeline: true
