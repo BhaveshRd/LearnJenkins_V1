@@ -22,6 +22,15 @@ pipeline {
             }
         }
 
+          stage('jacoco') {
+            steps {
+                // Run unit tests
+                bat 'mvn jacoco:report'
+            }
+        }
+
+        
+
         
 stage('Sonarqube') {
     environment {
