@@ -29,13 +29,13 @@ stage('Sonarqube') {
     }
     steps {
         withSonarQubeEnv('Sonar_Server_Default') {
-             withCredentials([string(credentialsId: 'Sonar_Token', variable: 'Sonar_Token_Updated')]) {
+             withCredentials([string(credentialsId: 'Sonar_Token', variable: 'User_Sonar_Token')]) {
                         
             bat "${scannerHome}/bin/sonar-scanner \
             -Dsonar.projectKey=LearnJenkins_V1 \
             -Dsonar.java.binaries=target/classes \
             -Dsonar.sources=src \
-             -Dsonar.token=\${Sonar_Token_Updated}"
+             -Dsonar.token=\${User_Sonar_Token}"
              }
         }
     }
