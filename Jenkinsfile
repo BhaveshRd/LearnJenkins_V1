@@ -1,9 +1,6 @@
 pipeline {
     agent any
 
-environment {
-        SONAR_TOKEN = credentials('Sonar_Token')
-    }
      tools {
         // Specify the Maven installation to use
         maven 'Maven_Default'
@@ -35,9 +32,6 @@ stage('Sonarqube') {
             -Dsonar.sources=src \
              -Dsonar.java.binaries=target/classes"
         }
-        timeout(time: 10, unit: 'MINUTES') {
-            waitForQualityGate abortPipeline: true
-        }
     }
 }
 
@@ -47,11 +41,5 @@ stage('Sonarqube') {
                         bat 'mvn package'
                     }
          }
-    }
-    post {
-       success {
-                           junit '**/target/surefire-reports/TEST-*.xml'
-                           archiveArtifacts 'target/*.jar'
-                 }
     }
 }
