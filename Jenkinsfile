@@ -23,19 +23,20 @@ environment {
             }
         }
 
-         stage('SonarQube Analysis') {
-            steps {
-                script {
-                    def scannerHome = tool 'Sonar_Scanner_Default'
-                    withSonarQubeEnv('Sonar_Server_Default') {
-					 withCredentials([string(credentialsId: 'Sonar_Token', variable: 'SONAR_TOKEN')]) {
-                        sh "${scannerHome}/bin/sonar-scanner \
-				-Dsonar.login=${env.SONAR_TOKEN}"
-						}
-                    }
-                }
-            }
+        
+stage('Sonarqube') {
+    environment {
+        scannerHome = tool 'Sonar_Scanner_Default'
+    }
+    steps {
+        withSonarQubeEnv('Sonar_Server_Default') {
+            sh "${scannerHome}/bin/sonar-scanner"
         }
+        timeout(time: 10, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
+        }
+    }
+}
 
          stage('Package') {
                     steps {
