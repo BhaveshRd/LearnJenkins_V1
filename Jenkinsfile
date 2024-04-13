@@ -35,7 +35,6 @@ stage('Sonarqube') {
             -Dsonar.projectKey=LearnJenkins_V1 \
             -Dsonar.java.binaries=target/classes \
             -Dsonar.sources=src \
-             -Dsonar.host.url=http://localhost:9000 \    
              -Dsonar.token=\${Sonar_Token_Updated}"
              }
         }
