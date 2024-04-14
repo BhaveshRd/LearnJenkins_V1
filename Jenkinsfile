@@ -12,7 +12,7 @@ pipeline {
 	    stage('Trigger Mail'){
 				steps{
 				 emailext body : "Your Jenkins build  #${BUILD_NUMBER} has a build status #${BUILD_STATUS}. You can check git commit id : ${GIT_COMMIT} "
-				subject: 'Jenkins Build Notification',
+				subject: "Jenkins Build Notification",
 				to: 'bhavesh.rd09@gmail.com'
 			}
 			
