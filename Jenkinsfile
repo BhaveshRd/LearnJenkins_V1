@@ -10,7 +10,7 @@ pipeline {
     
     stages {
 	    stage('Trigger Mail'){
-
+				steps{
 
 					emailext subject: 'Build Notification',
 					 body: "Build details:\n\n" +
@@ -18,7 +18,7 @@ pipeline {
 						 + "Build Status: ${BUILD_STATUS}\n" +
 						 + "Build URL : ${BUILD_URL}\n", 
 					 from: 'rbhaveshgm.0908@gmail.com'
-			
+				}
 			
 			} 
     }
