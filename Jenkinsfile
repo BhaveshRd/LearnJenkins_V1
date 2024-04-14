@@ -60,28 +60,15 @@ stage('Sonarqube') {
          }
     }
 
-  post {
-        success {
-            mail to: 'bhavesh.rd09@gmail.com',
+    stage('Trigger Mail'){
+        steps{
+             mail to: 'bhavesh.rd09@gmail.com',
                  subject: 'Build Notification',
                  body: "Build successful. Build details:\n\n" +
                      + "Build Number: ${BUILD_NUMBER}\n" +
-                     + "Built on: ${BUILD_TIMESTAMP}\n" +
-                     + "Git Branch: ${GIT_BRANCH}\n" +
-                     + "Git Commit: ${GIT_COMMIT}\n" +
-                     + "Built by: ${BUILD_USER_ID}", 
-                 from: 'rbhaveshgm.0908@gmail.com'
-        }
-        failure {
-            mail to: 'bhavesh.rd09@gmail.com',
-                 subject: 'Build Notification',
-                 body: "Build failed. Build details:\n\n" +
-                     + "Build Number: ${BUILD_NUMBER}\n" +
-                     + "Built on: ${BUILD_TIMESTAMP}\n" +
-                     + "Git Branch: ${GIT_BRANCH}\n" +
-                     + "Git Commit: ${GIT_COMMIT}\n" +
-                     + "Built by: ${BUILD_USER_ID}",
+                     + "Project Name: ${PROJECT_NAME}\n" +
+                     + "Build Status: ${BUILD_STATUS}\n" +
+                     + "Build URL : ${BUILD_URL}\n", 
                  from: 'rbhaveshgm.0908@gmail.com'
         }
     }
-}
