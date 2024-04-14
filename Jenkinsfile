@@ -60,7 +60,7 @@ stage('Sonarqube') {
          }
     }
 
-    
+    post(
         success {
             mail to: 'bhavesh.rd09@gmail.com',
                  subject: 'Build Notification',
