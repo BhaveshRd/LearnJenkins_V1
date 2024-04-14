@@ -12,46 +12,10 @@ pipeline {
         stage('clean') {
             steps {
                 // Build your project
-                bat 'mvn clean'
+                bat 'mvn clean test'
             }
         }
-        stage('Test') {
-            steps {
-                // Run unit tests
-                bat 'mvn test'
-            }
-        }
-
-          stage('jacoco') {
-            steps {
-                // Run unit tests
-                bat 'mvn jacoco:report'
-            }
-        }
-
-        
-
-        
-		stage('Sonarqube') {
-			environment {
-				scannerHome = tool 'Sonar_Scanner_Default'
-			}
-			steps {
-				withSonarQubeEnv('Sonar_Server_Default') {
-					 withCredentials([string(credentialsId: 'Sonar_Token', variable: 'User_Sonar_Token')]) {
-								
-					bat "${scannerHome}/bin/sonar-scanner \
-					-Dsonar.projectKey=LearnJenkins_V1 \
-					-Dsonar.java.binaries=target/classes \
-					-Dsonar.sources=src \
-					 -Dsonar.login=\${User_Sonar_Token} \
-					-Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
-							   
-					 }
-				}
-			}
-		}
-
+      
          stage('Package') {
                     steps {
                         // Run unit tests
@@ -65,10 +29,10 @@ pipeline {
 				 mail to: 'bhavesh.rd09@gmail.com',
 					 subject: 'Build Notification',
 					 body: "Build successful. Build details:\n\n" +
-						 + "Build Number: ${BUILD_NUMBER}\n" +
-						 + "Project Name: ${PROJECT_NAME}\n" +
-						 + "Build Status: ${BUILD_STATUS}\n" +
-						 + "Build URL : ${BUILD_URL}\n", 
+						 + "Build Number: ${env.BUILD_NUMBER}\n" +
+						 + "Project Name: ${env.PROJECT_NAME}\n" +
+						 + "Build Status: ${env.BUILD_STATUS}\n" +
+						 + "Build URL : ${env.BUILD_URL}\n", 
 					 from: 'rbhaveshgm.0908@gmail.com'
 			}
 		}
