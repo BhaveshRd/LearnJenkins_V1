@@ -11,14 +11,21 @@ pipeline {
     stages {
 		stage('Trigger Mail'){
 			steps{
-				 mail to: 'bhavesh.rd09@gmail.com',
-					 subject: 'Build Notification',
-					 body: "Build details:\n\n" +
-						 + "Build Number: ${env.BUILD_NUMBER}\n" +
-						 + "Build Status: ${env.BUILD_STATUS}\n" +
-						 + "Build URL : ${env.BUILD_URL}", 
-					 from: 'rbhaveshgm.0908@gmail.com'
+ def to = emailextrecipients([
+           requestor()
+    ])
+    
+    // set variables
+    def subject = "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} ${result}"
+    
+			steps{
+			 if(to != null && !to.isEmpty()) {
+					emailext(body: content, mimeType: 'text/html',
+					subject: subject,
+					to: to, attachLog: true )
+    }
 			}
+		}
 		}
     }
 }
