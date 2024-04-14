@@ -8,7 +8,7 @@ pipeline {
         maven 'Maven_Default'
     }
     
-    stages {
+    stage('Trigger Mail'){
 
 
 					emailext subject: 'Build Notification',
@@ -19,5 +19,5 @@ pipeline {
 					 from: 'rbhaveshgm.0908@gmail.com'
 			
 			
-			 }
+			}
 }
