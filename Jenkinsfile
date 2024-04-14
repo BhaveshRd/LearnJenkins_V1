@@ -28,11 +28,7 @@ pipeline {
 			steps{
 				 mail to: 'bhavesh.rd09@gmail.com',
 					 subject: 'Build Notification',
-					 body: "Build successful. Build details:\n\n" +
-						 + "Build Number: ${env.BUILD_NUMBER}\n" +
-						 + "Project Name: ${env.PROJECT_NAME}\n" +
-						 + "Build Status: ${env.BUILD_STATUS}\n" +
-						 + "Build URL : ${env.BUILD_URL}\n", 
+					 body: "Build successful. Build details: how r u, 
 					 from: 'rbhaveshgm.0908@gmail.com'
 			}
 		}
