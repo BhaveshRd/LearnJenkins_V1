@@ -26,7 +26,7 @@ def buildStatusNotification(String buildStatus) {
     if (buildStatus in ['SUCCESS', 'FAILURE']) {
         emailext body: "Your Jenkins build #${BUILD_NUMBER} has a build status ${buildStatus}. You can check git commit id: ${GIT_COMMIT}. \n"+
 	" Please check Jenkins URL for complete detail ${BUILD_URL} \n",
-       subject: "Jenkins Build Notification ${PROJECT_NAME} - Build # ${BUILD_NUMBER} - ${buildStatus}!",
+       subject: "Jenkins Build Notification ${JOB_NAME} - Build # ${BUILD_NUMBER} - ${buildStatus}!",
             to: 'bhavesh.rd09@gmail.com'
     }
 }
