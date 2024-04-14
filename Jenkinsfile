@@ -8,6 +8,14 @@ pipeline {
         maven 'Maven_Default'
     }
 	
+	stages {
+        stage('Build') {
+            steps {
+                // Your build steps here
+                sh 'mvn clean package'
+            }
+        }
+    }
 	
 	post {
         success {
