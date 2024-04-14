@@ -13,7 +13,7 @@ pipeline {
 			steps{
 				 mail to: 'bhavesh.rd09@gmail.com',
 					 subject: 'Build Notification',
-					 body: ${env.BUILD_NUMBER}, 
+					 body: "${env.BUILD_NUMBER}",  
 					 from: 'rbhaveshgm.0908@gmail.com'
 			}
 		}
