@@ -11,12 +11,9 @@ pipeline {
     stages {
 	    stage('Trigger Mail'){
 				steps{
-				 emailext to: 'bhavesh.rd09@gmail.com',
-					 subject: 'Build Notification',
-					 body: "Build details:\n\n" +
-						 + "Build Number: ${BUILD_NUMBER}\n" +
-						 + "Build Status: ${BUILD_STATUS}\n", 
-					 from: 'rbhaveshgm.0908@gmail.com'
+				emailext body: "Your Jenkins build #${BUILD_NUMBER} has failed! Commit: ${GIT_COMMIT}",
+              				  subject: "Build Failed",
+               			 to: "bhavesh.rd09@gmail.com"
 			}
 			
 			} 
