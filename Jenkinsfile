@@ -12,19 +12,20 @@ pipeline {
     }
     post {
         success {
-            echo "Build successful!"
-            currentBuild.result = 'SUCCESS'
+            buildStatusNotification('SUCCESS')
         }
         failure {
-            echo "Build failed!"
-            currentBuild.result = 'FAILURE'
+            buildStatusNotification('FAILURE')
         }
-        script {
-            if (currentBuild.result != null) {
-                emailext body: "Your Jenkins build #${BUILD_NUMBER} has a build status ${currentBuild.result}. You can check git commit id: ${GIT_COMMIT}",
-                    subject: "Jenkins Build Notification",
-                    to: 'bhavesh.rd09@gmail.com'
-            }
-        }
+    }
+}
+
+def buildStatusNotification(String buildStatus) {
+    echo "Build ${buildStatus.toLowerCase()}!"
+    currentBuild.result = buildStatus
+    if (buildStatus in ['SUCCESS', 'FAILURE']) {
+        emailext body: "Your Jenkins build #${BUILD_NUMBER} has a build status ${buildStatus}. You can check git commit id: ${GIT_COMMIT}",
+            subject: "Jenkins Build Notification",
+            to: 'bhavesh.rd09@gmail.com'
     }
 }
