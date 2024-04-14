@@ -15,8 +15,7 @@ pipeline {
 					 subject: 'Build Notification',
 					 body: "Build details:\n\n" +
 						 + "Build Number: ${BUILD_NUMBER}\n" +
-						 + "Build Status: ${BUILD_STATUS}\n" +
-						 + "Build URL : ${BUILD_URL}\n", 
+						 + "Build Status: ${BUILD_STATUS}\n", 
 					 from: 'rbhaveshgm.0908@gmail.com'
 			}
 			
