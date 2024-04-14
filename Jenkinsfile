@@ -59,4 +59,29 @@ stage('Sonarqube') {
                     }
          }
     }
+
+    
+        success {
+            mail to: 'bhavesh.rd09@gmail.com',
+                 subject: 'Build Notification',
+                 body: "Build successful. Build details:\n\n"
+                     + "Build Number: ${BUILD_NUMBER}\n"
+                     + "Built on: ${BUILD_TIMESTAMP}\n"
+                     + "Git Branch: ${GIT_BRANCH}\n"
+                     + "Git Commit: ${GIT_COMMIT}\n"
+                     + "Built by: ${BUILD_USER_ID}",
+                 from: 'rbhaveshgm.0908@gmail.com'
+        }
+        failure {
+            mail to: 'bhavesh.rd09@gmail.com',
+                 subject: 'Build Notification',
+                 body: "Build failed. Build details:\n\n"
+                     + "Build Number: ${BUILD_NUMBER}\n"
+                     + "Built on: ${BUILD_TIMESTAMP}\n"
+                     + "Git Branch: ${GIT_BRANCH}\n"
+                     + "Git Commit: ${GIT_COMMIT}\n"
+                     + "Built by: ${BUILD_USER_ID}",
+                 from: 'rbhaveshgm.0908@gmail.com'
+        }
+    }
 }
