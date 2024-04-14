@@ -28,7 +28,7 @@ pipeline {
 			steps{
 				 mail to: 'bhavesh.rd09@gmail.com',
 					 subject: 'Build Notification',
-					 body: "Build successful. Build details: how r u, 
+					 body: "Build successful. Build details: how r u", 
 					 from: 'rbhaveshgm.0908@gmail.com'
 			}
 		}
