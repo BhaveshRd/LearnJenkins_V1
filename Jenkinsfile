@@ -29,6 +29,6 @@ def buildStatusNotification(String buildStatus) {
 	" Please check Jenkins URL for complete detail ${BUILD_URL} \n",
        subject: "Jenkins Build Notification ${JOB_NAME} - Build # ${BUILD_NUMBER} - ${buildStatus}!",
             to: 'bhavesh.rd09@gmail.com',
-		  replyTo: defaultReplyTo
+		  replyTo: 'bhavesh.rd09@gmail.com'
     }
 }
